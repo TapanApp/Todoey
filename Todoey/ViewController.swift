@@ -12,14 +12,17 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     @IBOutlet weak var myTable: UITableView!
     var item = [""]
+    let myDefault = UserDefaults.standard
   
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-    }
-   
+        if let myitem = myDefault.array(forKey: "ToDoListArray") as? [String]{
+            item = myitem
+        }
+        }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return item.count
     }
@@ -44,6 +47,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         let alert = UIAlertController(title: "Add Todoey", message: "Add new data", preferredStyle: .alert)
         let aletAction = UIAlertAction(title: "Add her", style: .default) { (action) in
             self.item.append(myTextField.text!)
+            
+            self.myDefault.set(self.item, forKey: "ToDoListArray")
         self.myTable.reloadData()
         }
         alert.addTextField { (text) in
