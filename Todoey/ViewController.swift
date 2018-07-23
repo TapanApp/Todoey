@@ -22,7 +22,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             item = myitem
         }
         }
-    
+   
+    // Table view datasource method
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return item.count
     }
